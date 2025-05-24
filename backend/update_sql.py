@@ -6,7 +6,7 @@ from pathlib import Path
 from PyPDF2 import PdfReader
 
 # Constants
-VALID_LEVELS = {"novice", "intermediate", "advanced", "elite"}
+VALID_LEVELS = {"novice", "intermediate", "advanced", "elite", "agon"}
 PAGE_DIR = Path("./static/rounds")   # root folder containing subfolders of PDFs
 DB_PATH = "data.db"         # path to your SQLite database
 
@@ -104,7 +104,7 @@ def reset_database(db_path: str):
     conn.close()
 
 if __name__ == "__main__":
-    reset_database(DB_PATH)  # Reset the database
+    # reset_database(DB_PATH)  # Reset the database
     initialize_database(DB_PATH)  # Initialize the database
     print("Starting PDF scan and database update...")
     scan_and_store_pdfs(PAGE_DIR, DB_PATH)

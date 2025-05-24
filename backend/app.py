@@ -7,7 +7,7 @@ from flask_restful import Api
 from api.SearchEndpoint import SearchEndpoint
 from api.FindEndpoint import FindEndpoint
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/')
 CORS(app)  # allow React dev server to call this API
 api = Api(app)
 

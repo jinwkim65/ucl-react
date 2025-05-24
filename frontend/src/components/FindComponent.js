@@ -50,7 +50,7 @@ function FindComponent() {
 
   const openPdf = (tournament, level, year) => {
     const fileName = `${tournament}_${level}_${year}.pdf`;
-    const pdfUrl = `http://127.0.0.1:5000/static/rounds/${tournament}/${fileName}`;
+    const pdfUrl = `http://127.0.0.1:5000/rounds/${tournament}/${fileName}`;
     window.open(pdfUrl, '_blank');
   };
 
