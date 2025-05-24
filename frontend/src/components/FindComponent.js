@@ -6,6 +6,7 @@ const PAGE_SIZE = 10;
 function FindComponent() {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
+  const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -23,9 +24,10 @@ function FindComponent() {
       );
       const data = await response.json();
       if (response.ok) {
-        setResults(data);
+        setResults(data.results);
+        setTotal(data.total);
         setPage(pageNum);
-        setHasMore(data.length === PAGE_SIZE);
+        setHasMore(data.results.length === PAGE_SIZE);
       } else {
         setError(data.error || 'Search failed');
         setResults([]);
@@ -131,7 +133,7 @@ function FindComponent() {
             ← Previous
           </button>
 
-          <span className="align-self-center text-white">Page {page} ({results.length} results)</span>
+          <span className="align-self-center text-white">Page {page} ({total} results)</span>
 
           <button
             className="btn btn-outline-light"

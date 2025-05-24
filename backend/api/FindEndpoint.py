@@ -78,4 +78,7 @@ class FindEndpoint(Resource):
         start = (page - 1) * PAGE_SIZE
         paged = matches[start : start + PAGE_SIZE]
 
-        return paged
+        return {
+            'results':paged,
+            'total': len(matches)
+        }

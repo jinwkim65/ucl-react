@@ -1,6 +1,8 @@
 from flask_restful import Resource, request
 from api.dbconfig import get_db
 
+PAGE_SIZE = 10
+
 class SearchEndpoint(Resource):
     def get(self, page):
         try:
@@ -25,16 +27,19 @@ class SearchEndpoint(Resource):
                    AND level LIKE ?
                    AND year LIKE ?
                 ORDER BY year DESC, tournament ASC, level ASC
-                LIMIT 10 OFFSET ?;
                 """,
-                (tournament, level, year, offset)  # use parameterized query to prevent SQL injection
+                (tournament, level, year)  # use parameterized query to prevent SQL injection
             )
             rows = cur.fetchall()
             db.close()
 
             # 4) convert sqlite3.Rows into plain dicts
             results = [dict(r) for r in rows]
-            return results
+            page_results = results[offset:offset + PAGE_SIZE]  # apply pagination
+            return {
+                'results': page_results,
+                'total': len(results),
+            }
 
         except Exception as e:
             print(f"Error occurred: {e}")

@@ -8,6 +8,7 @@ function TableComponent() {
   const [level,      setLevel]      = useState('');
   const [year,       setYear]       = useState('');
   const [results,    setResults]    = useState([]);
+  const [total,      setTotal]      = useState(0);
   const [page,       setPage]       = useState(1);
   const [hasMore,    setHasMore]    = useState(true);
 
@@ -21,8 +22,9 @@ function TableComponent() {
     fetch(`http://127.0.0.1:5000/search/${page}?${params}`)
       .then(res  => res.json())
       .then(data => {
-        setResults(data);
-        setHasMore(data.length === PAGE_SIZE);
+        setResults(data.results);
+        setTotal(data.total);
+        setHasMore(data.results.length === PAGE_SIZE);
       })
       .catch(console.error);
   }, [tournament, level, year, page]);
@@ -139,7 +141,7 @@ function TableComponent() {
         </button>
 
         <span className="align-self-center text-white">
-          Page {page} ({results.length} results)
+          Page {page} ({total} results)
         </span>
 
         <button
