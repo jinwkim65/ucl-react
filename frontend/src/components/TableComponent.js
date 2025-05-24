@@ -37,7 +37,7 @@ function TableComponent() {
     const randomIndex = Math.floor(Math.random() * results.length);
     const r = results[randomIndex];
     const fileName = `${r.tournament}_${r.level}_${r.year}.pdf`;
-    const pdfUrl  = `http://127.0.0.1:5000/rounds/${r.tournament}/${fileName}`;
+    const pdfUrl  = `http://127.0.0.1:5000/static/rounds/${r.tournament}/${fileName}`;
     window.open(pdfUrl, '_blank');
   };
 

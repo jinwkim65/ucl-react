@@ -1,0 +1,8 @@
+# Ignore database
+/data.db
+
+
+# Misc
+/.DS_Store
+/.env
+/__pycache__
