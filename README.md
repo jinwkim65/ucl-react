@@ -1,6 +1,6 @@
 # ucl-react
 
-The [Ultimate Certamen Library (UCL)](https://www.certamenlibrary.org/) is a database of Certamen questions.
+The [Ultimate Certamen Library (UCL)](https://www.certamenlibrary.org/) is a database of Certamen questions. It is a website built using React and Flask with a MySQL database.
 
 You can search by tournament name, level, and year. Click on a row to view the PDF of the tournament.
 
